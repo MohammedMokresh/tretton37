@@ -1,4 +1,4 @@
-package com.cokresh.tretton37
+package com.mokresh.tretton37
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

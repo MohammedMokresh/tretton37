@@ -1,4 +1,4 @@
-package com.cokresh.tretton37
+package com.mokresh.tretton37
 
 import org.junit.Test
 
