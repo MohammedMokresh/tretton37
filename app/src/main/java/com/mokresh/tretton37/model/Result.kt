@@ -5,15 +5,22 @@ import com.google.gson.annotations.SerializedName
 
 data class Result(
     @SerializedName("category")
-    val category: String? = "",
+    var category: String? = "",
     @SerializedName("correct_answer")
-    val correctAnswer: String? = "",
+    var correctAnswer: String? = "",
     @SerializedName("difficulty")
-    val difficulty: String? = "",
+    var difficulty: String? = "",
     @SerializedName("incorrect_answers")
-    val incorrectAnswers: ArrayList<String> = ArrayList(),
+    var incorrectAnswers: ArrayList<String> = ArrayList(),
     @SerializedName("question")
-    val question: String? = "",
+    var question: String? = "",
     @SerializedName("type")
-    val type: String? = ""
-)
+    var type: String? = "",
+    @SerializedName("answer_status")
+    var answerStatus: String? = ""
+
+) {
+    fun enhancedQuestion(): String? {
+        return question?.replace("&quot;", "\"")
+    }
+}

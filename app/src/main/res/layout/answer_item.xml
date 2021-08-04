@@ -7,6 +7,10 @@
         <variable
                 name="item"
                 type="String"/>
+        <variable
+                name="clickListener"
+                type="com.mokresh.tretton37.base.OnClickListener"/>
+
 
     </data>
 
@@ -14,6 +18,7 @@
             android:layout_width="match_parent"
             android:layout_margin="16dp"
             android:elevation="5dp"
+            android:onClick="@{()-> clickListener.onItemClick(item)}"
             android:layout_height="wrap_content">
 
         <TextView
@@ -31,7 +36,6 @@
                 tools:text="1"
 
         />
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

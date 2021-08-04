@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 data class QuestionsResponseBody(
     @SerializedName("response_code")
-    val responseCode: Int?,
+    var responseCode: Int?,
     @SerializedName("results")
-    val results: List<Result>?
+    var results: ArrayList<Result>?
 )

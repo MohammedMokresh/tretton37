@@ -21,11 +21,11 @@
                 android:padding="16dp"
                 android:id="@+id/question_TextView"
                 android:layout_width="wrap_content"
-                android:text="@{item.question}"
+                android:text="@{item.enhancedQuestion}"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                android:textSize="14sp"
+                android:textSize="20sp"
                 tools:text="1"
 
         />

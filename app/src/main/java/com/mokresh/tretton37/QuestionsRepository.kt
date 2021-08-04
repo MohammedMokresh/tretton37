@@ -13,7 +13,7 @@ class QuestionsRepository(
 ) {
     suspend fun getQuestions(): Flow<Response<QuestionsResponseBody>> {
         return flow {
-            emit(service.getQuestions(amount = 10, "multiple"))
+            emit(service.getQuestions(amount = 11, "multiple"))
         }.flowOn(Dispatchers.IO)
     }
 
