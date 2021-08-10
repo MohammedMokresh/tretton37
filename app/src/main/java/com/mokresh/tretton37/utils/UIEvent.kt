@@ -9,8 +9,10 @@ abstract class UIEvent {
     data class AnswerClicked(val answer: String, val questionPosition: Int) : UIEvent()
 
     object OnTimerStarted : UIEvent()
-    object OnTimerFinished : UIEvent()
+    object FiftyFiftyClicked : UIEvent()
 
+    object PlusTenClicked : UIEvent()
+    object ReplaceQuestionClicked : UIEvent()
 
     object OnBackPressed : UIEvent()
 

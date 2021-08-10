@@ -21,15 +21,15 @@ class QuestionsViewModel(private val questionsRepository: QuestionsRepository) :
     }
 
     fun fiftyFiftyClicked() {
-
+        publishUIEvent(UIEvent.FiftyFiftyClicked)
     }
 
     fun plusTenClicked() {
-
+        publishUIEvent(UIEvent.PlusTenClicked)
     }
 
     fun replaceQuestionClicked() {
-
+        publishUIEvent(UIEvent.ReplaceQuestionClicked)
     }
 
 
