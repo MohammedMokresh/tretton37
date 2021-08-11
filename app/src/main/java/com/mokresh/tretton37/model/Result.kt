@@ -1,8 +1,11 @@
 package com.mokresh.tretton37.model
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class Result(
     @SerializedName("category")
     var category: String? = "",
@@ -19,7 +22,7 @@ data class Result(
     @SerializedName("answer_status")
     var answerStatus: String? = ""
 
-) {
+) : Parcelable {
     fun enhancedQuestion(): String? {
         return question?.replace("&quot;", "\"")
     }

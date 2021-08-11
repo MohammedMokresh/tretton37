@@ -1,4 +1,4 @@
-package com.mokresh.tretton37.view
+package com.mokresh.tretton37.view.questions
 
 import android.view.ViewGroup
 import android.widget.LinearLayout

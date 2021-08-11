@@ -1,4 +1,4 @@
-package com.mokresh.tretton37.view
+package com.mokresh.tretton37.view.questions
 
 import com.mokresh.tretton37.R
 import com.mokresh.tretton37.base.GenericAdapter

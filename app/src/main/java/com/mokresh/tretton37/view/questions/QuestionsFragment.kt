@@ -1,13 +1,15 @@
-package com.mokresh.tretton37.view
+package com.mokresh.tretton37.view.questions
 
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.View
+import androidx.navigation.fragment.findNavController
 import com.mokresh.tretton37.R
 import com.mokresh.tretton37.base.BaseFragment
 import com.mokresh.tretton37.databinding.FragmentQuestionsBinding
 import com.mokresh.tretton37.utils.Constants
 import com.mokresh.tretton37.utils.UIEvent
+import com.mokresh.tretton37.view.QuestionsViewModel
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -22,6 +24,11 @@ class QuestionsFragment : BaseFragment<FragmentQuestionsBinding, QuestionsViewMo
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+    }
+
+    override fun onResume() {
+        super.onResume()
         viewModel.getQuestions()
         binding.questionsViewPager.isUserInputEnabled = false
 
@@ -32,11 +39,13 @@ class QuestionsFragment : BaseFragment<FragmentQuestionsBinding, QuestionsViewMo
         when (event) {
             is UIEvent.RenderQuestionsViewPager -> {
                 startTheTimer(0)
+
                 viewModel.resultsList = event.result!!
 
                 questionAdapter = QuestionsAdapter(items = viewModel.resultsList)
 
                 binding.questionsViewPager.adapter = questionAdapter
+                binding.questionsViewPager.currentItem = 0
 
             }
             is UIEvent.AnswerClicked -> {
@@ -56,11 +65,8 @@ class QuestionsFragment : BaseFragment<FragmentQuestionsBinding, QuestionsViewMo
                 }
                 binding.questionsViewPager.currentItem = event.questionPosition + 1
 
-                if (binding.questionsViewPager.currentItem == viewModel.resultsList.size - 2) {
-                    //last item
-                } else {
-                    startTheTimer(0)
-                }
+                navigateToStatistics()
+
                 questionAdapter?.notifyItemChanged(binding.questionsViewPager.currentItem)
 
                 viewModel.resultsList.forEach {
@@ -120,7 +126,7 @@ class QuestionsFragment : BaseFragment<FragmentQuestionsBinding, QuestionsViewMo
                         Date(
                             millisUntilFinished
                         )
-                    );
+                    )
 
             }
 
@@ -128,17 +134,28 @@ class QuestionsFragment : BaseFragment<FragmentQuestionsBinding, QuestionsViewMo
                 viewModel.resultsList[binding.questionsViewPager.currentItem].answerStatus =
                     Constants.AnswerStatus.NOT_ANSWERED.status
                 binding.questionsViewPager.currentItem = binding.questionsViewPager.currentItem + 1
-
-                if (binding.questionsViewPager.currentItem == viewModel.resultsList.size - 1) {
-                    //last item
-                } else {
-                    startTheTimer(0)
-                }
-
+                navigateToStatistics()
 
             }
         }
         countDownTimer?.start()
+
+    }
+
+    fun navigateToStatistics() {
+        countDownTimer?.cancel()
+        if (binding.questionsViewPager.currentItem == viewModel.resultsList.size - 1) {
+            viewModel.resultsList.removeLast()
+            val directions =
+                QuestionsFragmentDirections.actionQuestionsFragmentToStatisticsFragment(
+                    viewModel.resultsList.toTypedArray()
+                )
+            directions.let { findNavController().navigate(it) }
+
+            //last item
+        } else {
+            startTheTimer(0)
+        }
 
     }
 }

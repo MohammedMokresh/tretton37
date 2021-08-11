@@ -4,8 +4,8 @@ object Constants {
 
 
     enum class AnswerStatus(val status: String) {
-        CORRECT("CORRECT"),
-        INCORRECT("INCORRECT"),
-        NOT_ANSWERED("NOT_ANSWERED")
+        CORRECT("Correct"),
+        INCORRECT("Incorrect"),
+        NOT_ANSWERED("Not Answered")
     }
 }
